@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import TestInte from "./test.js" ;
+import TestInte from "./test/test.js" ;
 import './test.css';
-import Routine from './testroute.js';
+import Routine from './test/testroute.js';
 
 
 function App() {
