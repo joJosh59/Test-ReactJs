@@ -1,14 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import TestInte from "./test.js" ;
+import './test.css';
+import Routine from './testroute.js';
+
 
 function App() {
   return (
     <div className="App">
+      
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Routine/>
+        <TestInte/>
+
         <a
           className="App-link"
           href="https://reactjs.org"
