@@ -22,7 +22,7 @@ function Searchbar(){
             const searchResults = res.data.results;
             setSearchResults(searchResults);
 
-        })
+        }, [])
     }
     
     
@@ -58,21 +58,22 @@ const [show, setShow]=useState(false);
     const handleClose=()=>setShow(false);
     return(
         
-        <Card border="Success" style={{width: '23rem', height:'34rem'}}>
-            <Card.Img variant="top" src={url_img}/>
-            <Card.Body>
-                <button type="button" onClick={handleShow}>Voire plus</button>
+        <Card border="Success" className="bg-success" style={{width: '23rem', height:'38rem'}}>
+           
+            <Card.Body> 
+            <h6>{movie.original_title ? movie.original_title : movie.original_name}</h6>
+                <Card.Img variant="bottom" src={url_img}/>
+                <button type="button" onClick={handleShow}>Afficher plus</button>
             <Modal show={show} onHide={handleClose}>
                       <Modal.Header closeButton>
                         <Modal.Title></Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                      <img className="card-img-top" style={{width:'14rem'}}src={url_img} />
-                      <h3>{movie.original_titre}</h3>
-                      
-                      <h5>Release Date: {movie.release_date}</h5>
+                      <h1>{movie.original_title ? movie.original_title : movie.original_name}</h1>
+                      <img className="card-img-top" style={{width:'14rem'}}src={url_img} alt="movie.original_titre" />
+                      <h3>Release Date: {movie.release_date}</h3>
                       <br></br>
-                      <h6>Overview</h6>
+                      <h4>Synopsis</h4>
                       <p>{movie.overview}</p>
                       </Modal.Body>
                       <Modal.Footer>
@@ -80,6 +81,7 @@ const [show, setShow]=useState(false);
                       </Modal.Footer>
                       </Modal>
             </Card.Body>
+           
         </Card>
     )
 
