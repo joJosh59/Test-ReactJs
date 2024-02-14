@@ -13,7 +13,7 @@ function Test() {
 
 function Test2() {
     return (
-        <div>
+        <div class="card">
             <p>
                 test2 
             </p>
