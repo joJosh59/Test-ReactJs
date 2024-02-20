@@ -1,15 +1,7 @@
-import { createStore } from "react-redux";
+import { createStore, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
+import Reducer1 from './reducer';
 
-const counterReducer = ( state = {count:0}, action) =>{
-    switch (action.type){
-        case 'INCREMENT':
-            return {count: state.count +1};
-        
-        case 'DECREMENT':
-            return {count: state.count -1};
-    }
-}
-
-const Store = createStore(counterReducer);
+const Store = createStore(Reducer1, applyMiddleware(thunk));
 
 export default Store;
