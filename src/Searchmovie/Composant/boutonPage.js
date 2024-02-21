@@ -1,21 +1,23 @@
 import React,{useState} from "react"
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 
-function BoutonPage({page, totalPages}){
+function BoutonPage(){
 
-    const [currentPage, setCurrentPage] = useState(page);
-
-    const handlePrevPage = () =>{
-        if(currentPage > 1){
-            setCurrentPage(currentPage - 1);
+   const Pages = useSelector((state)=> state.Reducer1.page);
+   const TotalPages = useSelector((state)=> state.Reducer1.total_pages);
+   const dispatch = useDispatch();
+    const handlePrevPage = (Pages) =>{
+        if(Pages > 1){
+            dispatch(Pages - 1);
         }
     };
     
-    const handleNextPage = () =>{
-        if(currentPage <totalPages){
-            setCurrentPage(currentPage + 1)
+    const handleNextPage = (Pages) =>{
+        if(Pages <TotalPages){
+            dispatch(Pages + 1)
         }
     };
 
@@ -26,7 +28,7 @@ return (
     </div>
     <div className="d-flex justify-content-center">
         <span className=" border-bottom"> 
-            Page: {page} sur {totalPages}
+            Page: {Pages} sur {TotalPages}
         </span>
     </div>
     <div>

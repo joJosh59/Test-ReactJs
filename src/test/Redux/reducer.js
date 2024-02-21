@@ -1,25 +1,25 @@
-import { fetchFilmPops, rechercheFilms } from "./action";
-
+import { fetchFilmPop, rechercheFilm } from "./action";
 const initialState ={
     query: '',
-    results: [],
+    result: [],
     page: 1,
 };
 
 const Reducer1 =(state = initialState, action) =>{
     switch (action.type){
-        case fetchFilmPops:
+        case fetchFilmPop :
             return{
                 ...state,
                 query:'',
-                results: action.payload,
+                result: action.payload,
                 page: action.page
+                
             };
-            case rechercheFilms:
+            case rechercheFilm:
                 return{
                     ...state,
                     query: action.payload.query,
-                    results: action.payload.films,
+                    result: action.payload.results,
                     page: action.payload.page
                 };
                 default:
@@ -27,4 +27,4 @@ const Reducer1 =(state = initialState, action) =>{
     }
 };
 
-export default Reducer1
+export default Reducer1;

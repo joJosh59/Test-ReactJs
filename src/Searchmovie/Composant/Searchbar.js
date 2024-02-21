@@ -6,13 +6,15 @@ import { rechercheFilms } from "../../test/Redux/action";
 
 function SearchBar(){
     const [query, setQuery] = useState("");
-    const [page, setPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
+
     const dispatch = useDispatch();
 
-    const handleSearch = (event)=>{
-        event.preventDefault();
-        dispatch(rechercheFilms(query, page));
-    };
+    const handleSearch = () => {
+        if (searchTerm.trim() !== "") {
+          dispatch(rechercheFilms(searchTerm));
+        }
+      };
 
     return (
         <Navbar bg="secondary" expand="lg" variant="dark" className="d-flex justify-content-center fixed-top" style={{opacity: '70%'}}>
@@ -24,7 +26,7 @@ function SearchBar(){
             aria-label="Recherche"
             name="query"
             value={query}
-            onChange={(event)=> setQuery(event.target.value)}></FormControl>
+            onChange={(event)=> dispatch(rechercheFilms(event.target.value))}></FormControl>
             
             <Button variant="primary" type="submit">Search</Button>
         </Form>
