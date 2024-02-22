@@ -4,7 +4,7 @@ export const fetchFilmPop = "fetchFilmPop";
 export const rechercheFilm = "rechercheFilm";
 export const prev_Page = "prev_Page";
 export const next_Page = "next_Page";
-export const reset_Page = "reset_Page"
+export const reset_Page = "reset_Page";
 
 const api_key = process.env.REACT_APP_API_KEY;
 
@@ -30,9 +30,9 @@ export const fetchFilmPops = () => {
   };
 };
 
-export const rechercheFilms = (query) => {
+export const rechercheFilms = (query, page) => {
   return async (dispatch, getState) => {
-    const { page } = getState().Reducer1;
+    // const { page } = getState().Reducer1;
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&page=${page}`
@@ -61,6 +61,6 @@ export const nextPage = () => ({
   type: next_Page,
 });
 
-export const resetPage = () =>({
-    type: reset_Page,
+export const resetPage = () => ({
+  type: reset_Page,
 });

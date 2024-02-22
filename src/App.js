@@ -6,15 +6,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import BoutonPage from "./Searchmovie/Composant/boutonPage";
 import SearchBar from "./Searchmovie/Composant/Searchbar";
 
+
+
 function App() {
   const recherche = useSelector((state) => state.query);
   const dispatch = useDispatch();
+  const page = useSelector((state) => state.Reducer1.page);
 
   useEffect(() => {
     if (!recherche) {
       dispatch(fetchFilmPops());
     } else {
-      dispatch(rechercheFilms(recherche));
+      dispatch(rechercheFilms(recherche, page));
     }
   }, [recherche, dispatch]);
 

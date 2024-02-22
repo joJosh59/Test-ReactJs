@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { fetchFilmPops, rechercheFilms } from "../../test/Redux/action";
 
-function SearchBar() {
+
+ function SearchBar() {
   const recherche = useSelector((state) => state.Reducer1.query);
+const page = useSelector((state) => state.Reducer1.page);
+
 
   const dispatch = useDispatch();
 
   const handleSearch = () => {
     if (recherche.trim() !== "") {
-      dispatch(rechercheFilms(recherche));
+      dispatch(rechercheFilms(recherche , page));
     } else {
-      dispatch(fetchFilmPops);
+      dispatch(fetchFilmPops());
     }
   };
 
@@ -34,7 +37,7 @@ function SearchBar() {
             name="query"
             value={recherche}
             onChange={(event) => {
-              dispatch(rechercheFilms(event.target.value));
+              dispatch(rechercheFilms(event.target.value, 1));
             }}
           ></FormControl>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { nextPage, prevPage } from "../../test/Redux/action";
+import { nextPage, prevPage, resetPage } from "../../test/Redux/action";
 
 function BoutonPage() {
   const Pages = useSelector((state) => state.Reducer1.page);
@@ -9,10 +9,13 @@ function BoutonPage() {
 
   const handlePrevPage = () => {
     dispatch(prevPage());
+    window.scrollTo(0, 0);
   };
 
   const handleNextPage = () => {
-      dispatch(nextPage());
+    dispatch(nextPage());
+    window.scrollTo(0, 0);
+    
   };
 
   return (
@@ -21,8 +24,10 @@ function BoutonPage() {
         <button
           type="button"
           onClick={handlePrevPage}
+          onLoad={resetPage}
           className="border-3 bg-black text-danger"
-          style={{ borderColor: "chartreuse" }}>
+          style={{ borderColor: "chartreuse" }}
+        >
           Precedent
         </button>
       </div>
