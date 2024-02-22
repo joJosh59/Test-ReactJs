@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Modal } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
+import { fetchFilmPops, rechercheFilms, resetPage } from "../../test/Redux/action";
 
 function CardFilm() {
   const movies = useSelector((state) => state.Reducer1.result);
+  const page = useSelector((state) => state.Reducer1.page);
+  const recherche = useSelector((state) => state.Reducer1.query);
+  const dispatch = useDispatch();
 
   const [show, setShow]=useState(null);
 
@@ -12,8 +16,18 @@ function CardFilm() {
 
   const handleClose= ()=>{setShow(null)};
 
+  useEffect(()=>{
+    if (recherche) {
+        dispatch(rechercheFilms(recherche, page));
+      }else {
+        dispatch(fetchFilmPops(page));
+      };
+      dispatch(resetPage(page))
+
+  }, [recherche, page, dispatch])
+
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex justify-content-evenly flex-wrap gap-4 pt-lg-5 bg-black">
       {movies.map((movie) => (
         <Card key={movie.id}
           className="bg-dark border-4 rounded-5 text-light"

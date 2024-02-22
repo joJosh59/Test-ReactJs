@@ -1,4 +1,4 @@
-import { fetchFilmPop, rechercheFilm } from "./action";
+import { fetchFilmPop, prev_Page, next_Page, rechercheFilm, reset_Page } from "./action";
 const initialState ={
     query: '',
     result: [],
@@ -11,8 +11,9 @@ const Reducer1 =(state = initialState, action) =>{
             return{
                 ...state,
                 query:'',
-                result: action.payload,
-                page: action.page
+                result: action.payload.results,
+                page: action.payload.page,
+                total_pages: action.payload.total_pages
                 
             };
             case rechercheFilm:
@@ -20,8 +21,24 @@ const Reducer1 =(state = initialState, action) =>{
                     ...state,
                     query: action.payload.query,
                     result: action.payload.results,
-                    page: action.payload.page
+                    page: action.payload.page,
+                    total_pages: action.payload.total_pages
                 };
+                case prev_Page:
+                    return {
+                        ...state,
+                        page: state.page > 1 ? state.page - 1 : state.page
+                    };
+                    case next_Page:
+                        return{
+                            ...state,
+                            page: state.page < state.total_pages ? state.page + 1 : state.page
+                        };
+                        case reset_Page:
+                            return {
+                                ...state,
+                                page: 1
+                            };
                 default:
                     return state;
     }
