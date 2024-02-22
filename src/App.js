@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CardFilm from "./Searchmovie/Composant/CardFilm";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFilmPops, rechercheFilms } from "./test/Redux/action";

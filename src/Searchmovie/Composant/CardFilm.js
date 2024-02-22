@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
-import { fetchFilmPops, rechercheFilms, resetPage } from "../../test/Redux/action";
+import { fetchFilmPops, rechercheFilms } from "../../test/Redux/action";
 
 function CardFilm() {
   const movies = useSelector((state) => state.Reducer1.result);
@@ -22,7 +22,6 @@ function CardFilm() {
       }else {
         dispatch(fetchFilmPops(page));
       };
-      dispatch(resetPage(page))
 
   }, [recherche, page, dispatch])
 
@@ -40,7 +39,7 @@ function CardFilm() {
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
             />
           </Card.Body>
-          <Modal show={show == movie} onHide={handleClose} className="">
+          <Modal show={show === movie} onHide={handleClose} className="">
             <Modal.Body className="bg-dark text-light text-center row-1cols-2">
               <h1>{movie.title}</h1>
               <img
